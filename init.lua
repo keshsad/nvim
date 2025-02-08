@@ -636,6 +636,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         html = {},
+        htmx = {},
         checkmake = {},
         stylua = {},
         marksman = {},
