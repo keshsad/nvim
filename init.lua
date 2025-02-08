@@ -635,6 +635,10 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
+        html = {},
+        checkmake = {},
+        stylua = {},
+        marksman = {},
         tailwindcss = {
           filetypes = { 'css', 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
         },
