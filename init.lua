@@ -173,7 +173,14 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 6
+vim.opt.scrolloff = 4
+
+-- Add filetype detection for templ files
+vim.filetype.add {
+  extension = {
+    templ = 'templ',
+  },
+}
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -634,14 +641,36 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        gopls = {},
-        html = {},
-        htmx = {},
+        gopls = {
+          filetypes = { 'go', 'templ' },
+        },
+        templ = {
+          filetypes = { 'templ' },
+        },
+        html = {
+          filetypes = { 'html', 'templ' },
+        },
+        htmx = {
+          filetypes = { 'html', 'templ' },
+        },
         checkmake = {},
         stylua = {},
         marksman = {},
+        cssls = {},
         tailwindcss = {
-          filetypes = { 'css', 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+          filetypes = { 'templ', 'css', 'html', 'javascript', 'typescript', 'react', 'javascriptreact', 'typescriptreact' },
+          settings = {
+            tailwindCSS = {
+              includeLanguages = {
+                templ = 'html',
+              },
+            },
+          },
+          init_options = {
+            userLanguages = {
+              templ = 'html',
+            },
+          },
         },
         -- pyright = {},
         -- rust_analyzer = {},
@@ -870,14 +899,16 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
+          { name = 'nvim_lsp' },
           {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
+          -- { name = 'supermaven' },
         },
       }
     end,
@@ -947,9 +978,28 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'lua',
+        'luadoc',
+        'vim',
+        'vimdoc',
+        'html',
+        'css',
+        'javascript',
+        'typescript',
+        'tsx',
+        'go',
+        'templ',
+        'c',
+        'markdown',
+        'markdown_inline',
+        'bash',
+        'diff',
+        'query',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
+      ignore_install = { 'javascript' },
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
