@@ -663,6 +663,7 @@ require('lazy').setup({
         stylua = {},
         marksman = {},
         cssls = {},
+        jsonls = {},
         tailwindcss = {
           filetypes = { 'templ', 'css', 'html', 'javascript', 'typescript', 'react', 'javascriptreact', 'typescriptreact' },
           settings = {
