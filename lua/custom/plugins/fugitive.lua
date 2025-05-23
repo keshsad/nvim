@@ -7,7 +7,7 @@ return {
       end,
 
       add = function()
-        vim.cmd 'Git add .'
+        vim.cmd 'Gwrite'
       end,
 
       write_commit = function()
