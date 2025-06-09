@@ -29,6 +29,10 @@ return {
       log = function()
         vim.cmd 'G log'
       end,
+
+      diff = function()
+        vim.cmd 'Gdiff'
+      end,
     }
 
     vim.keymap.set('n', '<leader>gs', git.status, { desc = '[G]it [S]tatus' })
@@ -37,5 +41,6 @@ return {
     vim.keymap.set('n', '<leader>gw', git.write_commit, { desc = '[G]it [w]rite & commit' })
     vim.keymap.set('n', '<leader>gp', git.push, { desc = '[G]it [P]ush' })
     vim.keymap.set('n', '<leader>gl', git.log, { desc = '[G]it [L]og' })
+    vim.keymap.set('n', '<leader>gd', git.diff, { desc = '[G]it [D]iff' })
   end,
 }
