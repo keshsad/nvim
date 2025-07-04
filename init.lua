@@ -663,7 +663,23 @@ require('lazy').setup({
         stylua = {},
         marksman = {},
         cssls = {},
-        jsonls = {},
+        jsonls = {
+          settings = {
+            json = {
+              validate = { enable = true },
+              schemas = {
+                {
+                  fileMatch = { 'package.json' },
+                  url = 'https://json.schemastore.org/package.json',
+                },
+                {
+                  fileMatch = { 'tsconfig.json' },
+                  url = 'https://json.schemastore.org/tsconfig.json',
+                },
+              },
+            },
+          },
+        },
         tailwindcss = {
           filetypes = { 'templ', 'css', 'html', 'javascript', 'typescript', 'react', 'javascriptreact', 'typescriptreact' },
           settings = {
